@@ -1,0 +1,12 @@
+{
+  "/service/page": "app/service/page.js",
+  "/about/page": "app/about/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/api/posts/route": "app/api/posts/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/api/auth/register/route": "app/api/auth/register/route.js",
+  "/admin/page": "app/admin/page.js",
+  "/admin/user/page": "app/admin/user/page.js",
+  "/admin/addevent/page": "app/admin/addevent/page.js"
+}
