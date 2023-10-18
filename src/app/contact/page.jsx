@@ -9,7 +9,7 @@ const Page = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Let&apos;s Keep in Touch</h1>
-      <div className={styles.content}>
+      <div className={`${styles.content} flex flex-col lg:flex-row`}>
         <div className={styles.imgContainer}>
           <Image
             src="https://i.ibb.co/KhDcq3r/events.jpg"

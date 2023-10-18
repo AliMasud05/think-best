@@ -9,20 +9,31 @@ const Page = () => {
   const [sortOption, setSortOption] = useState('');
   const [sortDirection, setSortDirection] = useState('asc');
   const [currentPage, setCurrentPage] = useState(1); // Current page
-  const [itemsPerPage] = useState(6);
+  const [itemsPerPage] = useState(8);
 
   useEffect(() => {
     const apiUrl = 'https://think-best.vercel.app/api/posts';
 
-    axios
-      .get(apiUrl)
+    axios.get(apiUrl)
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
-        console.error('Error fetching data:', error);
+        if (error.response) {
+          // The request was made, but the server responded with an error status code
+          console.error('Response data:', error.response.data);
+          console.error('Response status:', error.response.status);
+          console.error('Response headers:', error.response.headers);
+        } else if (error.request) {
+          // The request was made, but no response was received
+          console.error('Request:', error.request);
+        } else {
+          // Something happened in setting up the request
+          console.error('Error message:', error.message);
+        }
       });
   }, []);
+  console.log(data)
 
   const handleSortChange = (e) => {
     const newSortOption = e.target.value;
@@ -88,7 +99,7 @@ const Page = () => {
       <h1 className='text-center py-2 text-2xl'>Product</h1>
 
       <div>
-        <div className="flex flex-wrap justify-center items-baseline w-screen bg-slate-200">
+        <div className="flex flex-wrap justify-center items-baseline  bg-slate-200">
           {currentItems.map((item) => (
             <ServiceCard key={item.id} product={item} />
           ))}

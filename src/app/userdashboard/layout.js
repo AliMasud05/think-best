@@ -23,8 +23,8 @@ function getItem(label, key, icon, route, children) {
 
 const items = [
   getItem("Home", "1", <FileOutlined />, "/userdashboard"),
-  getItem("User List", "1", <PieChartOutlined />, "/userdashboard/userprofile"),
-  getItem("Option 2", "2", <DesktopOutlined />, "/userdashboard/editprofile"),
+  getItem("User Profile", "1", <PieChartOutlined />, "/userdashboard/userprofile"),
+  getItem("Edit Profile", "2", <DesktopOutlined />, "/userdashboard/editprofile"),
 ];
 
 const AdminLayout = ({ children }) => {

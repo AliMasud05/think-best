@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import styles from "./navbar.module.css";
-import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
-import { signOut, useSession } from "next-auth/react";
 import axios from "axios";
+import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
+import styles from "./navbar.module.css";
 
 const links = [
   {
@@ -33,11 +33,7 @@ const links = [
     title: "Contact",
     url: "/contact",
   },
-  {
-    id: 6,
-    title: "Dashboard",
-    url: "/userdashboard",
-  },
+
 
 ];
 
@@ -94,13 +90,20 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
-            {role == user ?
-              <Link href='/userdashboard' className={`${styles.link} mx-2`}>
-                Dashboard
-              </Link> :
-              <Link href='/admin' className={`${styles.link} mx-2`}>
-                Dashboard
-              </Link>
+            {user ?
+              <>
+                {role == admin ?
+                  <Link href='/admin' className={`${styles.link} mx-2`}>
+                    Dashboard
+                  </Link> :
+                  <Link href='/userdashboard' className={`${styles.link} mx-2`}>
+                    Dashboard
+                  </Link>
+                }
+
+              </>
+              :
+              ''
 
             }
 

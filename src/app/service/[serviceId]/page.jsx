@@ -1,11 +1,8 @@
 'use client'
+import ServiceCard from '@/components/Shared/ServiceCard';
 import axios from 'axios';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { MdOutlineLocationOn } from 'react-icons/md';
-import { AiOutlineClockCircle } from 'react-icons/ai';
-import Link from 'next/link';
-import ServiceCard from '@/components/Shared/ServiceCard';
 
 
 

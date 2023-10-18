@@ -9,13 +9,13 @@ const ServiceCard = ({ product}) => {
    //console.log(product._id)
  
     return (
-        <Link href={`/service/${product._id}`} className='m-2'>
+        <Link href={`/service/${product._id}`} className='flex justify-around m-2'>
            
 
             <div className=" bg-slate-300 rounded-lg shadow-lg p">
                 {/* Event Image */}
                 <div className="relative">
-                    <div className="absolute bg-slate-400 font-serif h-8 bg-red-300">
+                    <div className="absolute  font-serif h-8 bg-red-300">
                         <span className="">26</span>
                         <small className="">June</small>
                     </div>

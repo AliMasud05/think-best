@@ -1,7 +1,7 @@
 'use client'
-import React, { useEffect, useState } from 'react'
 import { Button, Col, Row, Statistic } from 'antd';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 
