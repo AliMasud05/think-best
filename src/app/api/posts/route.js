@@ -6,6 +6,7 @@ export const GET = async (request) => {
   const url = new URL(request.url);
   const postId = url.searchParams.get("id");
   const username = url.searchParams.get("username");
+  const rating = url.searchParams.get("rating");
 
   try {
     await connect(); // Connect to your database
@@ -14,8 +15,12 @@ export const GET = async (request) => {
 
     if (postId) {
       query = { _id: postId }; // Search by ID
-    } else if (username) {
+    }
+    else if (username) {
       query = { username }; // Search by username
+    }
+    else if (rating) {
+      query = { rating }; // Search by username
     }
 
     const posts = await Post.find(query);

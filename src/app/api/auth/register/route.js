@@ -31,12 +31,20 @@ export const POST = async (request) => {
   }
 };
 export const GET = async (request) => {  
+    const url = new URL(request.url);
+
+
+    const email = url.searchParams.get("email");
+
   
-   await connect();
+    await connect();
+    let query = {};
+    if (email) {
+      query = { email}; // Search by ID
+   }
 
   
 
-  let query = {};
   try {
     const user = await User.find(query)
      return new NextResponse(JSON.stringify(user), { status: 200 });

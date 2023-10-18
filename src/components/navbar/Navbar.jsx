@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
 import DarkModeToggle from "../DarkModeToggle/DarkModeToggle";
 import { signOut, useSession } from "next-auth/react";
+import axios from "axios";
 
 const links = [
   {
@@ -35,18 +36,37 @@ const links = [
   {
     id: 6,
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/userdashboard",
   },
-  
+
 ];
 
 
 
 const Navbar = () => {
   const session = useSession();
-  // console.log(session.data);
-  // const user = session.data;
-  // console.log(user)
+  //  console.log(session.data);
+  const user = session?.data;
+  const email = user?.user?.email;
+
+
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const apiUrl = `https://think-best.vercel.app/api/auth/register?email=${email}`;
+
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, [email]);
+  const role = users?.[0]?.role;
+  console.log(role)
 
   return (
     <div className="container">
@@ -74,10 +94,20 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
+            {role == user ?
+              <Link href='/userdashboard' className={`${styles.link} mx-2`}>
+                Dashboard
+              </Link> :
+              <Link href='/admin' className={`${styles.link} mx-2`}>
+                Dashboard
+              </Link>
+
+            }
+
           </ul>
         </div>
         {session.status === "authenticated" ?
-          <> <button className={`${styles.logout} `}onClick={signOut}>
+          <> <button className={`${styles.logout} `} onClick={signOut}>
             Logout
           </button></> : <> <button className={styles.logout} >
             <Link href='/dashboard/login'>
